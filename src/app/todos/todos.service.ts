@@ -16,6 +16,11 @@ export class TodosService {
     this.save(todos);
   }
 
+  delete(item: TodoItem): void {
+    const todos = this.todos().filter(value => value.guid !== item.guid);
+    this.save(todos);
+  }
+
   guid(): string {
   return 'xxxxxxxx-xxxx-4xxx-yxxx-xxxxxxxxxxxx'.replace(/[xy]/g, function(c) {
     /* tslint:disable no-bitwise */

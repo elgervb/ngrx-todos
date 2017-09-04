@@ -6,7 +6,7 @@ import { Component, OnInit } from '@angular/core';
   selector: 'app-todos',
   template: `
     <app-item-form (itemAdded)="addTodo($event)"></app-item-form>
-    <app-list [items]="todos"></app-list>
+    <app-list [items]="todos" (delete)="deleteTodo($event)"></app-list>
   `,
   styles: []
 })
@@ -25,6 +25,10 @@ export class TodosComponent implements OnInit {
       guid: this.todosService.guid(),
       todo
     });
+  }
+
+  deleteTodo(todo: TodoItem): void {
+    this.todosService.delete(todo);
   }
 
 }

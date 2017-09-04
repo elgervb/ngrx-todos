@@ -1,11 +1,11 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, Input, OnInit, Output, EventEmitter } from '@angular/core';
 import { TodoItem } from '../todos.models';
 
 @Component({
   selector: 'app-list-item',
   template: `
     <div>
-      {{item.todo}}
+      {{item.todo}} <button (click)="delete.emit(item)">x</button>
     </div>
   `,
   styles: []
@@ -13,6 +13,7 @@ import { TodoItem } from '../todos.models';
 export class ListItemComponent implements OnInit {
 
   @Input() item: TodoItem;
+  @Output() delete = new EventEmitter();
 
   constructor() { }
 
