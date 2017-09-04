@@ -5,7 +5,7 @@ import { TodoItem } from '../todos.models';
   selector: 'app-list',
   template: `
     <ul>
-      <li *ngFor="let todo of todos">
+      <li *ngFor="let todo of items">
         <app-list-item [item]="todo"></app-list-item>
       </li>
     </ul>
@@ -14,7 +14,7 @@ import { TodoItem } from '../todos.models';
 })
 export class ListComponent implements OnInit {
 
-  @Input() todos: TodoItem[];
+  @Input() items: TodoItem[];
 
   constructor() { }
 
