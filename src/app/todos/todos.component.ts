@@ -8,10 +8,29 @@ import { Store } from '@ngrx/store';
 @Component({
   selector: 'app-todos',
   template: `
-    <app-item-form (itemAdded)="addTodo($event)"></app-item-form>
-    <app-list [todos$]="todos$" (delete)="deleteTodo($event)"></app-list>
+    <header>
+      <app-item-form (itemAdded)="addTodo($event)"></app-item-form>
+    </header>
+    <main>
+      <app-list [todos$]="todos$" (delete)="deleteTodo($event)"></app-list>
+    </main>
+    <footer>
+      Currently: {{(todos$ |async)?.length}} active todos
+    </footer>
   `,
-  styles: []
+  styles: [`
+    :host {
+      display: flex;
+      flex-direction: column;
+      height: 100vh;
+    }
+    main {
+      flex: 2;
+    }
+    header, footer {
+      padding: 1rem 0;
+    }
+  `]
 })
 export class TodosComponent implements OnInit {
 

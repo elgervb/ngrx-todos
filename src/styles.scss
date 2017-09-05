@@ -8,6 +8,7 @@ html {
   font-size: 16px;
 }
 body {
+  color: #333;
   font-size: 100%;
 }
 *, *:before, *:after {
@@ -15,4 +16,7 @@ body {
 }
 button {
   cursor: pointer;
+}
+::-webkit-input-placeholder {
+  color: #999;
 }
