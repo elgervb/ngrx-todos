@@ -1,5 +1,5 @@
 import { Observable } from 'rxjs/Rx';
-import { TodoAddAction } from './todos.actions';
+import { TodoAddAction, TodoDeleteAction } from './todos.actions';
 import { TodoItem, TodoState } from './todos.models';
 import { TodosService } from './todos.service';
 import { Component, OnInit } from '@angular/core';
@@ -31,7 +31,7 @@ export class TodosComponent implements OnInit {
   }
 
   deleteTodo(todo: TodoItem): void {
-    // this.todosService.delete(todo);
+    this.store.dispatch(new TodoDeleteAction(todo));
   }
 
 }

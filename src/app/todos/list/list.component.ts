@@ -7,7 +7,7 @@ import { TodoItem } from '../todos.models';
   template: `
     <ul>
       <li *ngFor="let todo of todos$ | async">
-        <app-list-item [item]="todo" (delete)="delete.emit($event)"></app-list-item>
+        <app-list-item [todo]="todo" (delete)="delete.emit($event)"></app-list-item>
       </li>
     </ul>
   `,

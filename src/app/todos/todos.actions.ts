@@ -6,3 +6,9 @@ export class TodoAddAction implements ActionWithPayload<TodoItem> {
 
   constructor(public payload: TodoItem) {}
 }
+
+export class TodoDeleteAction implements ActionWithPayload<TodoItem> {
+  type = actionTypes.DELETE;
+
+  constructor(public payload: TodoItem) {}
+}
