@@ -18,6 +18,11 @@ import { Component, Output, EventEmitter } from '@angular/core';
       margin-right: 1rem;
       padding: 1rem;
     }
+    button {
+      border: none;
+      border-radius: 50%;
+      padding: 0 1.7em;
+    }
     button[disabled] {
       opacity: .4;
     }

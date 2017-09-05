@@ -26,6 +26,7 @@ import { Store } from '@ngrx/store';
     }
     main {
       flex: 2;
+      overflow-y: scroll;
     }
     header, footer {
       padding: 1rem 0;
