@@ -1,21 +1,27 @@
-import { Component, OnInit, Output, EventEmitter } from '@angular/core';
+import { Component, Output, EventEmitter } from '@angular/core';
 
 @Component({
   selector: 'app-item-form',
   template: `
-    <form (ngSubmit)="itemAdded.emit(todo)">
-      <input type="text" name="todo" [(ngModel)]="todo" />
-      <button>+</button>
+    <form #form="ngForm" (ngSubmit)="onSubmit()">
+      <input type="text" name="todo" [(ngModel)]="todo" required />
+      <button [disabled]="form.invalid">+</button>
     </form>
   `,
-  styles: []
+  styles: [`
+    button[disabled] {
+      opacity: .4;
+    }
+  `]
 })
-export class ItemFormComponent implements OnInit {
+export class ItemFormComponent {
 
   @Output() itemAdded = new EventEmitter();
   todo: string;
 
-  constructor() { }
+  onSubmit(): void {
+    this.itemAdded.emit(this.todo);
 
-  ngOnInit() { }
+    this.todo = null;
+  }
 }
