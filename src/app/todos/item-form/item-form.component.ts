@@ -4,7 +4,7 @@ import { Component, Output, EventEmitter } from '@angular/core';
   selector: 'app-item-form',
   template: `
     <form #form="ngForm" (ngSubmit)="onSubmit()">
-      <input type="text" name="todo" [(ngModel)]="todo" required />
+      <input type="text" name="todo" [(ngModel)]="todo" required autocomplete="off"/>
       <button [disabled]="form.invalid">+</button>
     </form>
   `,
