@@ -1,3 +1,4 @@
+import { Observable } from 'rxjs/Rx';
 import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { TodoItem } from '../todos.models';
 
@@ -5,7 +6,7 @@ import { TodoItem } from '../todos.models';
   selector: 'app-list',
   template: `
     <ul>
-      <li *ngFor="let todo of items">
+      <li *ngFor="let todo of todos$ | async">
         <app-list-item [item]="todo" (delete)="delete.emit($event)"></app-list-item>
       </li>
     </ul>
@@ -14,7 +15,7 @@ import { TodoItem } from '../todos.models';
 })
 export class ListComponent implements OnInit {
 
-  @Input() items: TodoItem[];
+  @Input() todos$: Observable<TodoItem[]>;
   @Output() delete = new EventEmitter();
 
   constructor() { }
