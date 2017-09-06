@@ -1,0 +1,41 @@
+:host {
+  opacity: 0;
+  visibility: hidden;
+
+  &.flyout--initialized {
+    opacity: 1;
+    visibility: visible;
+  }
+}
+.flyout {
+  padding: 1em;
+  position: fixed;
+  top: 0;
+  transition: all .3s ease-in;
+  z-index: 100;
+
+  &.flyout--show {
+    transform: translateX(0);
+  }
+}
+.flyout--right {
+  right: 0;
+  transform: translateX(90%);
+}
+.flyout--left {
+  left: 0;
+}
+.flyout--centered {
+  top: 50%;
+  transform: translateY(-50%);
+}
+.flyout--full-height {
+  height: 100vh;
+}
+
+
+// DEBUG
+.flyout {
+  background-color: #5A9463;
+  color: #fff;
+}
