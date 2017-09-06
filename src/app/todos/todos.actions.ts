@@ -7,6 +7,12 @@ export class TodoAddAction implements ActionWithPayload<TodoItem> {
   constructor(public payload: TodoItem) {}
 }
 
+export class TodoCompleteAction implements ActionWithPayload<TodoItem> {
+  type = actionTypes.COMPLETE;
+
+  constructor(public payload: TodoItem) {}
+}
+
 export class TodoDeleteAction implements ActionWithPayload<TodoItem> {
   type = actionTypes.DELETE;
 

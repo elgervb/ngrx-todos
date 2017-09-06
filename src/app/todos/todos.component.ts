@@ -1,5 +1,5 @@
 import { Observable } from 'rxjs/Rx';
-import { TodoAddAction, TodoDeleteAction } from './todos.actions';
+import { TodoAddAction, TodoCompleteAction, TodoDeleteAction } from './todos.actions';
 import { TodoItem, TodoState } from './todos.models';
 import { TodosService } from './todos.service';
 import { Component, OnInit } from '@angular/core';
@@ -12,7 +12,7 @@ import { Store } from '@ngrx/store';
       <app-item-form (itemAdded)="addTodo($event)"></app-item-form>
     </header>
     <main>
-      <app-list [todos$]="todos$" (delete)="deleteTodo($event)"></app-list>
+      <app-list [todos$]="todos$" (complete)="completeTodo($event)" (delete)="deleteTodo($event)"></app-list>
     </main>
     <footer>
       Currently: {{(todos$ |async)?.length}} active todos
@@ -48,6 +48,10 @@ export class TodosComponent implements OnInit {
       guid: this.todosService.guid(),
       todo
     }));
+  }
+
+  completeTodo(todo: TodoItem): void {
+    this.store.dispatch(new TodoCompleteAction(todo));
   }
 
   deleteTodo(todo: TodoItem): void {

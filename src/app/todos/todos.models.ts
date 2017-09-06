@@ -11,4 +11,5 @@ export interface TodoState {
 export interface TodoItem {
   guid: string;
   todo: string;
+  completed?: boolean;
 }
