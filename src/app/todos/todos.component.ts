@@ -15,7 +15,7 @@ import { Store } from '@ngrx/store';
       <app-list [todos$]="todos$" (complete)="completeTodo($event)" (delete)="deleteTodo($event)"></app-list>
     </main>
     <footer>
-      Currently: {{(todos$ |async)?.length}} active todos
+      <p>Currently: {{(todos$ |async)?.length}} active todos</p>
     </footer>
   `,
   styles: [`

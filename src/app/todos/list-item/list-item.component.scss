@@ -1,0 +1,41 @@
+.item {
+  align-items: center;
+  display: flex;
+  padding: 1rem .5rem;
+  transition: background .3s ease-in;
+
+  &:hover {
+    background-color: #eee;
+
+    .btn__delete {
+      opacity: 1;
+      visibility: visible;
+    }
+  }
+}
+.todo__title {
+  flex: 1;
+  margin: 0;
+}
+.btn__delete {
+  border: none;
+  background: transparent;
+  color: red;
+  opacity: 0;
+  visibility: hidden;
+  transition: .75s ease-in-out 0s;
+}
+.status {
+  background-color: #fff;
+  border: 1px solid #999;
+  border-radius: 50%;
+  cursor: pointer;
+  display: inline-block;
+  height: 1em;
+  margin-right: .5rem;
+  transition: background .3s ease-in;
+  width: 1em;
+}
+.status.completed {
+  background-color: green;
+}

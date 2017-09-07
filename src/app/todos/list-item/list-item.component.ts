@@ -3,31 +3,14 @@ import { TodoItem } from '../todos.models';
 
 @Component({
   selector: 'app-list-item',
+  styleUrls: ['list-item.component.scss'],
   template: `
-    <span class="check" [class.completed]="todo.completed" (click)="complete.emit(todo)">•</span>
-    {{todo.todo}} <button class="btn__delete" (click)="delete.emit(todo)">&times;</button>
+    <div class="item">
+      <i class="status" [class.completed]="todo.completed" (click)="complete.emit(todo)"></i>
+      <p class="todo__title">{{todo.todo}}</p>
+      <button class="btn__delete" (click)="delete.emit(todo)">&times;</button>
+    </div>
   `,
-  styles: [`
-    :host:hover .btn__delete {
-      opacity: 1;
-      visibility: visible;
-    }
-    .btn__delete {
-      border: none;
-      background: transparent;
-      color: red;
-      opacity: 0;
-      visibility: hidden;
-      transition: .75s ease-in-out 0s;
-    }
-    .check {
-      color: red;
-      cursor: pointer;
-    }
-    .check.completed {
-      color: green;
-    }
-  `]
 })
 export class ListItemComponent implements OnInit {
 
