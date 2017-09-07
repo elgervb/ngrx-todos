@@ -6,11 +6,6 @@
 
   &:hover {
     background-color: #eee;
-
-    .btn__delete {
-      opacity: 1;
-      visibility: visible;
-    }
   }
 }
 .todo__title {
@@ -18,12 +13,19 @@
   margin: 0;
 }
 .btn__delete {
-  border: none;
-  background: transparent;
-  color: red;
+  border: darken(red, 10%);
+  background: red;
+  color: white;
   opacity: 0;
   visibility: hidden;
-  transition: .75s ease-in-out 0s;
+  transition: .2s ease-in-out 0s;
+
+  .item:hover & {
+    opacity: 1;
+    transition-duration: .75s;
+    transition-delay: .5s;
+    visibility: visible;
+  }
 }
 .status {
   background-color: #fff;
