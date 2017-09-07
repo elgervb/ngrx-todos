@@ -1,0 +1,21 @@
+::-webkit-scrollbar {
+  width: 10px;
+  height: 10px;
+}
+::-webkit-scrollbar-track {
+  width: 10px;
+  background-color: #f1f1f1;
+  border-radius: 7px;
+  border: 1.5px solid white;
+}
+::-webkit-scrollbar-thumb {
+  width: 7px;
+  border: 1px solid #d5d5d5;
+  border-radius: 7px;
+  background: #d6d6d6;
+}
+::-webkit-scrollbar-button:start:decrement,::-webkit-scrollbar-button:end:increment {
+  height: 10px;
+  display: block;
+  background-color: transparent;
+}
