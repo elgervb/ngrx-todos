@@ -5,7 +5,7 @@ import { TodoItem } from '../todos.models';
   selector: 'app-list-item',
   styleUrls: ['list-item.component.scss'],
   template: `
-    <div class="item">
+    <div class="item" (dblclick)="complete.emit(todo)">
       <i class="status" [class.completed]="todo.completed" (click)="complete.emit(todo)"></i>
       <p class="todo__title">{{todo.todo}}</p>
       <button class="btn__delete" (click)="delete.emit(todo)">&times;</button>
