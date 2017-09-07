@@ -1,17 +1,11 @@
 :host {
-  opacity: 0;
-  visibility: hidden;
-
-  &.flyout--initialized {
-    opacity: 1;
-    visibility: visible;
-  }
+  overflow: hidden;
 }
 .flyout {
   padding: 1em;
   position: fixed;
   top: 0;
-  transition: all .3s ease-in;
+  transition: transform .3s ease-in;
   z-index: 100;
 
   &.flyout--show {
@@ -36,6 +30,6 @@
 
 // DEBUG
 .flyout {
-  background-color: #5A9463;
+  background-color: #3AAC4B;
   color: #fff;
 }

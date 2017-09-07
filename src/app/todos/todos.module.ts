@@ -12,7 +12,6 @@ import { ListItemComponent } from './list-item/list-item.component';
 import { TodosComponent } from './todos.component';
 import { ItemFormComponent } from './item-form/item-form.component';
 import { todosReducer } from './todos.reducers';
-import { FlyoutComponent } from './flyout/flyout.component';
 
 const reducers: ActionReducerMap<TodoState> = {todos: todosReducer};
 
@@ -31,7 +30,7 @@ const metaReducers = [localStorageSyncReducer];
     StoreModule.forRoot(reducers, {metaReducers}),
     TodosRoutingModule
   ],
-  declarations: [ListComponent, ListItemComponent, TodosComponent, ItemFormComponent, FlyoutComponent],
+  declarations: [ListComponent, ListItemComponent, TodosComponent, ItemFormComponent],
   providers: [
     TodosService
   ]
