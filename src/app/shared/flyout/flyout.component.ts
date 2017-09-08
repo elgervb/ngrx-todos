@@ -1,10 +1,10 @@
-import { Component, Input } from '@angular/core';
+import { Component, EventEmitter, Input, Output, SimpleChanges } from '@angular/core';
 
 @Component({
   selector: 'app-flyout',
   styleUrls: ['flyout.component.scss'],
   template: `
-    <section class="flyout" role="dialog" (click)="show=!show"
+    <section class="flyout" role="dialog"
       *ngIf="true"
       [ngStyle]="css"
       [ngClass]="'flyout--'+location"
@@ -12,12 +12,9 @@ import { Component, Input } from '@angular/core';
       [class.flyout--centered]="centered"
       [class.flyout--show]="show">
 
-      <ng-content></ng-content>
+      <button class="btn--close" (click)="close()">&times;</button>
 
-      <p>Location: {{location}}</p>
-      <p>Full height: {{fullHeight}}</p>
-      <p>Show: {{show}}</p>
-      <p>Custom styling: {{css | json}}</p>
+      <ng-content></ng-content>
     </section>
   `
 })
@@ -26,13 +23,23 @@ export class FlyoutComponent {
   @Input() fullHeight = true;
   @Input() centered = false;
   @Input() location: 'left'|'right' = 'right';
-  @Input() show = false;
   @Input() css?: string;
+  @Input() show = false;
+  @Output() showChange = new EventEmitter();
 
   public initialized = true;
 
-
+  public close(): void {
+    this.show = false;
+    this.showChange.emit(this.show);
+  }
   public open(): void {
     this.show = true;
+    this.showChange.emit(this.show);
   }
+  public toggle(): void {
+    this.show = !this.show;
+    this.showChange.emit(this.show);
+  }
+
 }

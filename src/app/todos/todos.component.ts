@@ -12,11 +12,18 @@ import { Store } from '@ngrx/store';
       <app-item-form (itemAdded)="addTodo($event)"></app-item-form>
     </header>
     <main>
-      <app-list [todos$]="todos$" (complete)="completeTodo($event)" (delete)="deleteTodo($event)"></app-list>
+      <app-list
+        [todos$]="todos$"
+        (complete)="completeTodo($event)"
+        (delete)="deleteTodo($event)"
+        (showDetails)="showDetails($event)"></app-list>
     </main>
     <footer>
       <p>Currently: {{(todos$ |async)?.length}} active todos</p>
     </footer>
+    <app-flyout [(show)]="showFlyout" >
+      <app-item-details *ngIf="selectedItem" [todo]="selectedItem"></app-item-details>
+    </app-flyout>
   `,
   styles: [`
     :host {
@@ -37,6 +44,9 @@ export class TodosComponent implements OnInit {
 
   todos$: Observable<TodoItem[]>;
 
+  showFlyout = false;
+  selectedItem: TodoItem;
+
   constructor(private todosService: TodosService, private store: Store<TodoState>) { }
 
   ngOnInit() {
@@ -56,6 +66,11 @@ export class TodosComponent implements OnInit {
 
   deleteTodo(todo: TodoItem): void {
     this.store.dispatch(new TodoDeleteAction(todo));
+  }
+
+  showDetails(todo: TodoItem): void {
+    this.showFlyout = true;
+    this.selectedItem = todo;
   }
 
 }

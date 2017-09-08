@@ -5,7 +5,7 @@ import { Component, Output, EventEmitter } from '@angular/core';
   template: `
     <form #form="ngForm" (ngSubmit)="onSubmit()">
       <input type="text" name="todo" [(ngModel)]="todo" required autocomplete="off" placeholder="Add todo here..."/>
-      <button [disabled]="form.invalid">+</button>
+      <button [hidden]="true" [disabled]="form.invalid">+</button>
     </form>
   `,
   styles: [`
