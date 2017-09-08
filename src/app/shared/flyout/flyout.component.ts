@@ -1,4 +1,4 @@
-import { Component, EventEmitter, Input, Output, SimpleChanges } from '@angular/core';
+import { Component, EventEmitter, HostListener, Input, Output, SimpleChanges } from '@angular/core';
 
 @Component({
   selector: 'app-flyout',
@@ -28,6 +28,11 @@ export class FlyoutComponent {
   @Output() showChange = new EventEmitter();
 
   public initialized = true;
+
+  @HostListener('document:keydown.escape', ['$event']) onKeydownHandler(evt: KeyboardEvent) {
+    this.close();
+  }
+
 
   public close(): void {
     this.show = false;
