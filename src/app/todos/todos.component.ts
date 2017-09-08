@@ -1,5 +1,5 @@
 import { Observable } from 'rxjs/Rx';
-import { TodoAddAction, TodoCompleteAction, TodoDeleteAction } from './todos.actions';
+import { TodoAddAction, TodoCompleteAction, TodoDeleteAction, TodoGetAction } from './todos.actions';
 import { TodoItem, TodoState } from './todos.models';
 import { TodosService } from './todos.service';
 import { Component, OnInit } from '@angular/core';
@@ -50,6 +50,7 @@ export class TodosComponent implements OnInit {
   constructor(private todosService: TodosService, private store: Store<TodoState>) { }
 
   ngOnInit() {
+    this.store.dispatch(new TodoGetAction());
     this.todos$ = this.store.select(state => state.todos);
   }
 

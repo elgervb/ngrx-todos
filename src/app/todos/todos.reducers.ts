@@ -2,9 +2,10 @@ import { ActionWithPayload, TodoItem } from './todos.models';
 import { ActionReducer } from '@ngrx/store';
 
 export const actionTypes = {
-  ADD: 'Add',
-  DELETE: 'Delete',
-  COMPLETE: 'Complete'
+  ADD: 'Add items',
+  COMPLETE: 'Complete item',
+  DELETE: 'Delete item',
+  GET: 'Get todo items'
 };
 
 export function todosReducer(state: TodoItem[] = [], action: ActionWithPayload<TodoItem>) {
@@ -25,6 +26,9 @@ export function todosReducer(state: TodoItem[] = [], action: ActionWithPayload<T
         }
         return item;
       });
+
+    case actionTypes.GET:
+      return state;
 
     default:
       return state;

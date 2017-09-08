@@ -16,9 +16,4 @@ export class TodosService {
       return v.toString(16);
     });
   }
-
-  private save(items: TodoItem[]): void {
-    localStorage.setItem(KEY, JSON.stringify(items));
-  }
-
 }
