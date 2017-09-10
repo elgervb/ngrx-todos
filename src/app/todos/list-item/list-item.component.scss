@@ -49,15 +49,27 @@
 }
 .status {
   background-color: #fff;
-  border: 1px solid #999;
+  border: 1px solid red;
   border-radius: 50%;
   cursor: pointer;
   display: inline-block;
   height: 1em;
   margin-right: .5rem;
+  position: relative;
   transition: background .3s ease-in;
+  user-select: none;
   width: 1em;
-}
-.status.completed {
-  background-color: green;
+
+  &.completed {
+    border-color: green;
+    color: green;
+    .mark {
+      display: inline;
+    }
+  }
+  .mark {
+    display: none;
+    position: absolute;
+    top: -0.375em;
+  }
 }
