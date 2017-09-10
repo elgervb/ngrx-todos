@@ -6,9 +6,7 @@ import { TodoItem } from '../todos.models';
   styleUrls: ['list-item.component.scss'],
   template: `
     <div class="item" (click)="showDetails.emit(todo)">
-      <i class="status" [class.completed]="todo.completed" (click)="complete.emit(todo); $event.stopPropagation();">
-        <span class="mark">✔</span>
-      </i>
+      <app-check [checked]="todo.completed" (onChecked)="complete.emit(todo); "></app-check>
       <p class="todo__title">{{todo.todo}}</p>
       <button class="btn__delete" (click)="toggleDelete();$event.stopPropagation()">&times;</button>
       <div class="item__delete" [class.show]="showDelete" (click)="delete.emit(todo)" (mouseout)="toggleDelete(false)">delete</div>

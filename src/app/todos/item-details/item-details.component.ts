@@ -8,6 +8,9 @@ import { Component, Input, OnInit } from '@angular/core';
       Todo {{todo.guid}}
     </h2>
     <p>{{todo.todo}}</p>
+
+    <hr />
+    <pre><code>{{todo | json}}</code></pre>
   `,
   styles: []
 })
