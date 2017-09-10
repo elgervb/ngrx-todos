@@ -1,6 +1,6 @@
-import { Observable } from 'rxjs/Rx';
+import { Observable, BehaviorSubject } from 'rxjs/Rx';
 import { TodoAddAction, TodoCompleteAction, TodoDeleteAction, TodoGetAction } from './todos.actions';
-import { TodoItem, TodoState } from './todos.models';
+import { TodoFilter, TodoItem, TodoState } from './todos.models';
 import { TodosService } from './todos.service';
 import { Component, OnInit } from '@angular/core';
 import { Store } from '@ngrx/store';
@@ -19,10 +19,14 @@ import { Store } from '@ngrx/store';
         (showDetails)="showDetails($event)"></app-list>
     </main>
     <footer>
-      <p>Currently: {{(todos$ |async)?.length}} active todos</p>
+      <p>
+        Currently: {{(todos$ |async)?.length}} todos
+        <label for="showCompleted">Show completed</label>
+        <input type="checkbox" id="showCompleted" #showCompleted (change)="changeFilter({completed: showCompleted.checked})">
+      </p>
     </footer>
     <app-flyout [(show)]="showFlyout" >
-      <app-item-details *ngIf="selectedItem" [todo]="selectedItem"></app-item-details>
+      <app-item-details *ngIf="selectedItem" ngModel [todo]="selectedItem"></app-item-details>
     </app-flyout>
   `,
   styles: [`
@@ -42,16 +46,16 @@ import { Store } from '@ngrx/store';
 })
 export class TodosComponent implements OnInit {
 
-  todos$: Observable<TodoItem[]>;
-
   showFlyout = false;
   selectedItem: TodoItem;
+  private filter = new BehaviorSubject<TodoFilter>({completed: false});
+  private _todos$: Observable<TodoItem[]>;
 
   constructor(private todosService: TodosService, private store: Store<TodoState>) { }
 
   ngOnInit() {
     this.store.dispatch(new TodoGetAction());
-    this.todos$ = this.store.select(state => state.todos);
+    this._todos$ = this.store.select(state => state.todos);
   }
 
   addTodo(todo: string): void {
@@ -61,12 +65,22 @@ export class TodosComponent implements OnInit {
     }));
   }
 
+  changeFilter(filter: TodoFilter): void {
+    this.filter.next(filter);
+  }
+
   completeTodo(todo: TodoItem): void {
     this.store.dispatch(new TodoCompleteAction(todo));
   }
 
   deleteTodo(todo: TodoItem): void {
     this.store.dispatch(new TodoDeleteAction(todo));
+  }
+
+  get todos$(): Observable<TodoItem[]> {
+    return Observable.combineLatest(this._todos$, this.filter,
+      (todos, filter) => todos.filter(item => item.completed === filter.completed)
+    );
   }
 
   showDetails(todo: TodoItem): void {

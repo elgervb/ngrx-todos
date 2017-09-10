@@ -15,7 +15,6 @@ import { Component, Output, EventEmitter } from '@angular/core';
     input {
       flex: 2;
       font-size: 1em;
-      margin-right: 1rem;
       padding: 1rem;
     }
     button {

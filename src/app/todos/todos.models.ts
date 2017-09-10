@@ -13,3 +13,7 @@ export interface TodoItem {
   todo: string;
   completed?: boolean;
 }
+
+export interface TodoFilter {
+  completed?: boolean;
+}
