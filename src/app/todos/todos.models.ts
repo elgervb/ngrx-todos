@@ -15,5 +15,6 @@ export interface TodoItem {
 }
 
 export interface TodoFilter {
+  all?: boolean;
   completed?: boolean;
 }

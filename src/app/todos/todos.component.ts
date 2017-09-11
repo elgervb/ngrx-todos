@@ -21,8 +21,13 @@ import { Store } from '@ngrx/store';
     <footer>
       <p>
         Currently: {{(todos$ |async)?.length}} todos
-        <label for="showCompleted">Show completed</label>
-        <input type="checkbox" id="showCompleted" #showCompleted (change)="changeFilter({completed: showCompleted.checked})">
+
+        <label for="showAll">all</label>
+        <input type="radio" name="filter" id="showAll" #showAll checked (change)="changeFilter({all: showAll.checked})">
+        <label for="showActive">active</label>
+        <input type="radio" name="filter" id="showActive" #showActive (change)="changeFilter({completed: !showActive.checked})">
+        <label for="showCompleted">completed</label>
+        <input type="radio" name="filter" id="showCompleted" #showCompleted (change)="changeFilter({completed: showCompleted.checked})">
       </p>
     </footer>
     <app-flyout [(show)]="showFlyout" >
@@ -80,7 +85,7 @@ export class TodosComponent implements OnInit {
 
   get todos$(): Observable<TodoItem[]> {
     return Observable.combineLatest(this._todos$, this.filter,
-      (todos, filter) => todos.filter(item => item.completed === filter.completed)
+      (todos, filter) => todos.filter(item => filter.all || item.completed === filter.completed)
     );
   }
 
