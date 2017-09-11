@@ -11,6 +11,7 @@ import { Component, Output, EventEmitter } from '@angular/core';
   styles: [`
     form {
       display: flex;
+      width: 100%;
     }
     input {
       flex: 2;

@@ -20,15 +20,24 @@ import { Store } from '@ngrx/store';
     </main>
     <footer>
       <p>
-        Currently: {{(todos$ |async)?.length}} todos
-
-        <label for="showAll">all</label>
-        <input type="radio" name="filter" id="showAll" #showAll checked (change)="changeFilter({all: showAll.checked})">
-        <label for="showActive">active</label>
-        <input type="radio" name="filter" id="showActive" #showActive (change)="changeFilter({completed: !showActive.checked})">
-        <label for="showCompleted">completed</label>
-        <input type="radio" name="filter" id="showCompleted" #showCompleted (change)="changeFilter({completed: showCompleted.checked})">
+        Currently: {{(todos$ |async)?.length}} todos. Show:
       </p>
+
+      <ul>
+        <li>
+          <input type="radio" name="filter" id="showAll" #showAll checked (change)="changeFilter({all: showAll.checked})">
+          <label for="showAll">all</label>
+        </li>
+        <li>
+          <input type="radio" name="filter" id="showActive" #showActive (change)="changeFilter({completed: !showActive.checked})">
+          <label for="showActive">active</label>
+        </li>
+        <li>
+          <input type="radio" name="filter" id="showCompleted" #showCompleted (change)="changeFilter({completed: showCompleted.checked})">
+          <label for="showCompleted">completed</label>
+        </li>
+      </ul>
+
     </footer>
     <app-flyout [(show)]="showFlyout" >
       <app-item-details *ngIf="selectedItem" ngModel [todo]="selectedItem"></app-item-details>
@@ -45,7 +54,17 @@ import { Store } from '@ngrx/store';
       overflow-y: auto;
     }
     header, footer {
+      align-items: center;
+      display: flex;
       padding: 1rem 0;
+    }
+    footer ul {
+      list-style: none;
+      padding: 0;
+      margin: 0;
+    }
+    footer p{
+      margin: 0;
     }
   `]
 })
