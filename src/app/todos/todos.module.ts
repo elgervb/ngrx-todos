@@ -1,7 +1,7 @@
 import { ActionWithPayload, TodoItem, TodoState } from './todos.models';
 import { TodosService } from './todos.service';
 import { FormsModule } from '@angular/forms';
-import { NgModule } from '@angular/core';
+import { CUSTOM_ELEMENTS_SCHEMA, NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { StoreModule, ActionReducerMap, ActionReducer, Action } from '@ngrx/store';
 import { localStorageSync } from 'ngrx-store-localstorage';
@@ -36,6 +36,7 @@ const metaReducers = [localStorageSyncReducer];
   declarations: [ListComponent, ListItemComponent, TodosComponent, ItemFormComponent, ItemDetailsComponent],
   providers: [
     TodosService
-  ]
+  ],
+  schemas: [ CUSTOM_ELEMENTS_SCHEMA ],
 })
 export class TodosModule { }

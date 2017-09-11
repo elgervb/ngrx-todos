@@ -61,7 +61,8 @@ export class TodosComponent implements OnInit {
   addTodo(todo: string): void {
     this.store.dispatch(new TodoAddAction({
       guid: this.todosService.guid(),
-      todo
+      todo,
+      completed: false
     }));
   }
 
