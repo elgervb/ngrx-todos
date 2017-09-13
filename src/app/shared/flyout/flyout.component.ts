@@ -10,18 +10,7 @@ import { Component, EventEmitter, HostListener, Input, Output, SimpleChanges } f
  * @example:
  *```
  *  <app-flyout>
- *    <app-flyout-header>
- *      <button class="flyout__close">&times;</button>
- *    </app-flyout-header>
- *    <app-flyout-body>
- *      <h1> here comes title</h1>
- *      <p>Further flyout body</p>
- *    </app-flyout-body>
- *    <flyout__footer>
- *      <div class="buttons">
- *        <button class="flyout__close">Close flyout</button>
- *      </div>
- *    </flyout__footer>
+ *    <h1>SOme content</h1>
  *  </app-flyout>
  * ```
  */
@@ -29,28 +18,17 @@ import { Component, EventEmitter, HostListener, Input, Output, SimpleChanges } f
   selector: 'app-flyout',
   styleUrls: ['flyout.component.scss'],
   template: `
-  <section class="flyout" role="dialog"
-    *ngIf="true"
-    [ngStyle]="css"
-    [ngClass]="'flyout--'+location"
-    [class.flyout--full-height]="fullHeight"
-    [class.flyout--centered]="centered"
-    [class.flyout--show]="show">
+    <section class="flyout" role="dialog"
+      *ngIf="true"
+      [ngStyle]="css"
+      [ngClass]="'flyout--'+location"
+      [class.flyout--full-height]="fullHeight"
+      [class.flyout--centered]="centered"
+      [class.flyout--show]="show">
 
-    <header class="flyout__header">
-      <ng-content select="app-flyout-header"></ng-content>
-    </header>
-
-    <main class="flyout__body">
-      <ng-content select="app-flyout-body"></ng-content>
-    </main>
-
-    <footer class="flyout__footer">
-      <ng-content select="app-flyout-footer"></ng-content>
-    </footer>
-
-  </section>
-`
+      <ng-content></ng-content>
+    </section>
+  `
 })
 export class FlyoutComponent {
 

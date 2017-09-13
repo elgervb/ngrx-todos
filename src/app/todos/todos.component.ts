@@ -1,8 +1,9 @@
+import { FlyoutComponent } from '../shared/flyout/flyout.component';
 import { Observable, BehaviorSubject } from 'rxjs/Rx';
 import { TodoAddAction, TodoCompleteAction, TodoDeleteAction, TodoGetAction } from './todos.actions';
 import { TodoFilter, TodoItem, TodoState } from './todos.models';
 import { TodosService } from './todos.service';
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
 import { Store } from '@ngrx/store';
 
 @Component({
@@ -39,38 +40,16 @@ import { Store } from '@ngrx/store';
       </ul>
 
     </footer>
-    <app-flyout [(show)]="showFlyout" >
-      <app-item-details *ngIf="selectedItem" ngModel [todo]="selectedItem"></app-item-details>
+    <app-flyout [location]="'right'" [css]="{'background-color':'#fff', 'border-left': '1px solid #f4f4f4'}">
+      <app-item-details *ngIf="selectedItem" [todo]="selectedItem"></app-item-details>
     </app-flyout>
   `,
-  styles: [`
-    :host {
-      display: flex;
-      flex-direction: column;
-      height: 100vh;
-    }
-    main {
-      flex: 2;
-      overflow-y: auto;
-    }
-    header, footer {
-      align-items: center;
-      display: flex;
-      padding: 1rem 0;
-    }
-    footer ul {
-      list-style: none;
-      padding: 0;
-      margin: 0;
-    }
-    footer p{
-      margin: 0;
-    }
-  `]
+  styleUrls: ['todos.component.scss']
 })
 export class TodosComponent implements OnInit {
 
-  showFlyout = false;
+  @ViewChild(FlyoutComponent) flyout: FlyoutComponent;
+
   selectedItem: TodoItem;
   private filter = new BehaviorSubject<TodoFilter>({completed: false});
   private _todos$: Observable<TodoItem[]>;
@@ -109,7 +88,7 @@ export class TodosComponent implements OnInit {
   }
 
   showDetails(todo: TodoItem): void {
-    this.showFlyout = true;
+    this.flyout.open();
     this.selectedItem = todo;
   }
 

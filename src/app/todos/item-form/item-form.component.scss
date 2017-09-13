@@ -1,0 +1,17 @@
+form {
+  display: flex;
+}
+input {
+  flex: 2;
+  font-size: 1em;
+  padding: 1rem;
+  width: 100%;
+}
+button {
+  border: none;
+  border-radius: 50%;
+  padding: 0 1.7em;
+}
+button[disabled] {
+  opacity: .4;
+}

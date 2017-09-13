@@ -15,12 +15,7 @@ import { TodoItem } from '../todos.models';
       </li>
     </ul>
   `,
-  styles: [`
-    ul {
-      list-style: none;
-      padding: 0;
-    }
-  `]
+  styleUrls: ['list.component.scss']
 })
 export class ListComponent implements OnInit {
 

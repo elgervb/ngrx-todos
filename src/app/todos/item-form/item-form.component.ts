@@ -8,25 +8,7 @@ import { Component, Output, EventEmitter } from '@angular/core';
       <button [hidden]="true" [disabled]="form.invalid">+</button>
     </form>
   `,
-  styles: [`
-    form {
-      display: flex;
-      width: 100%;
-    }
-    input {
-      flex: 2;
-      font-size: 1em;
-      padding: 1rem;
-    }
-    button {
-      border: none;
-      border-radius: 50%;
-      padding: 0 1.7em;
-    }
-    button[disabled] {
-      opacity: .4;
-    }
-  `]
+  styleUrls: [ 'item-form.component.scss' ]
 })
 export class ItemFormComponent {
 
