@@ -1,0 +1,16 @@
+.overlay {
+  height: 100%;
+  width: 100%;
+  position: fixed;
+  background-color: rgba(0, 0, 0, .3);
+  top: 0;
+  left: 0;
+  visibility: hidden;
+  opacity: 0;
+  transition: all .3s ease-in;
+
+  &.show {
+    opacity: 1;
+    visibility: visible;
+  }
+}
