@@ -40,7 +40,7 @@ import { Store } from '@ngrx/store';
       </ul>
 
     </footer>
-    <app-overlay [show]="flyout.show"></app-overlay>
+    <app-overlay [show]="flyout.show" [effect]="'slide-in-left'"></app-overlay>
     <app-flyout #flyout [location]="'right'" [css]="{'background-color':'#fff', 'border-left': '1px solid #f4f4f4'}">
       <app-item-details *ngIf="selectedItem" [todo]="selectedItem"></app-item-details>
     </app-flyout>

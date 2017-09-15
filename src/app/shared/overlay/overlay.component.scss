@@ -13,4 +13,72 @@
     opacity: 1;
     visibility: visible;
   }
+
+  &.effect--slide-in, &.effect--slide-in-left {
+    transform: translateX(-100%);
+
+    &.show {
+      transform: translateX(0);
+    }
+  }
+
+  &.effect--slide-in-right {
+    transform: translateX(100%);
+
+    &.show {
+      transform: translateX(0);
+    }
+  }
+
+  &.effect--slide-in-top {
+    transform: translateY(-100%);
+
+    &.show {
+      transform: translateY(0);
+    }
+  }
+
+  &.effect--slide-in-bottom {
+    transform: translateY(100%);
+
+    &.show {
+      transform: translateY(0);
+    }
+  }
+
+  &.effect--zoom-in {
+    transform: scale(0);
+
+    &.show {
+      transform: scale(1);
+    }
+  }
+
+  &.effect--expand, &.effect--expand-vertical {
+    perspective: 250px;
+    opacity: 1;
+    transform: rotateY(90deg);
+
+    &.show {
+      transform: rotateY(180deg);
+    }
+  }
+
+  &.effect--expand-horizontal {
+    perspective: 250px;
+    opacity: 1;
+    transform: rotateY(90deg);
+
+    &.show {
+      transform: rotateY(180deg);
+    }
+  }
+
+  &.effect--genie {
+    transform: translateY(60%) scale(0);
+
+    &.show {
+      transform: translateY(0%) scale(1);
+    }
+  }
 }
